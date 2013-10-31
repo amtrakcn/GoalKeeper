@@ -1,0 +1,21 @@
+<h1 id="goals_index">Goals Index</h1>
+
+<% @goals.each do |goal| %>
+	<h2><%= goal.name%></h2>
+	<p>
+		<%= goal.details %> <br>
+		Goal created by <%= goal.user.username %>
+		<br>
+			<% if goal.private_goal %>
+				This goal is private
+			<% else %>
+				This goal is public
+			<% end%>
+
+			<% if logged_in? && goal.user_id == self.current_user.id %>
+				<%= button_to "Edit", edit_goal_url(goal), :method => 'get' %>
+				<%= button_to "Delete", goal_url(goal), :method => 'delete' %>
+			<% end %>
+	</p>
+
+<% end %>

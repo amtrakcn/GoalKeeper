@@ -1,0 +1,19 @@
+<h1>Editing <%= @goal.name %></h1>
+
+<form action="<%= goal_url(@goal) %>" method="post" accept-charset="utf-8">
+	<input type="hidden" name="_method" value="put">
+
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" id="authenticity_token">
+
+	<label for="goal_name">Goal name</label><input type="text" name="goal[name]" value="<%= @goal.name if !!@goal %>" id="goal_name">
+	<br>
+
+	<label for="details">Details</label><input type="textarea" name="goal[details]" value="<%= @goal.details if !!@goal%>" id="details">
+
+	<br>
+
+	<label for "private_goal">Make it private</label>
+	<input type="checkbox" name="goal[private_goal]" <%= "checked" if !!@goal && @goal.private_goal == true %> id="private_goal">
+
+	<p><input type="submit" value="Edit Goal"></p>
+</form>

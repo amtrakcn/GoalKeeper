@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GoalApp</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<% if flash[:errors] %>
+	  <% flash[:errors].each do |error| %>
+	  <%= error %> <br>
+	  <% end %>
+	<%end%>
+
+	<% if self.logged_in? %>
+		Hello <%= self.current_user.username %>
+		<%= button_to "Log Out", session_url, :method => :delete%>
+	<% else %>
+		<%= link_to "Sign Up", new_user_url%>
+		<%= link_to "Sign In", new_session_url%>
+  <% end %>
+
+<%= yield %>
+
+</body>
+</html>
